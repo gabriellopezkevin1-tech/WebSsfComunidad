@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light" />
+<link rel="icon" href="data:," />
+<title>Cuéntanos de ti — Academia Juvenil Ssf</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAF7F0;
+    --bg-soft:#FDFBF6;
+    --card:#FFFFFF;
+    --ink:#1B2F2F;
+    --ink-2:#2E4443;
+    --muted:#5E6E6C;
+    --muted-2:#7A8A87;
+    --line:#E9E2D3;
+    --line-2:#EFE9DB;
+    --dark:#173232;
+    --dark-hover:#0F2727;
+    --mint:#DFF0E4;
+    --mint-strong:#CBE8D3;
+    --lav:#ECE9F7;
+    --lav-2:#E2DCF3;
+    --peach:#FDEEDB;
+    --yellow:#FEF3C2;
+    --blue:#E2EDF9;
+    --rose:#FBE8E8;
+    --radius:24px;
+    --radius-sm:16px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Manrope", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.55;
+  }
+  a{color:inherit}
+  button, input, textarea, select{font:inherit}
+  /* tap targets */
+  button, [role="button"], select, summary, input:not([type="checkbox"],[type="radio"]){min-height:48px}
+  label{cursor:pointer}
+
+  /* ---------- Header — mismo estilo que la web principal ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:20;
+    background:rgba(250,247,240,.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line-2);
+  }
+  .topbar-inner{
+    max-width:1152px; margin:0 auto;
+    padding:14px 20px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+  }
+  .brand{display:flex; align-items:center; gap:11px; text-decoration:none; min-height:48px}
+  .brand-badge{
+    width:38px; height:38px; flex:0 0 38px;
+    background:var(--dark); color:#fff;
+    border-radius:11px;
+    display:grid; place-items:center;
+    font-family:"Fraunces", serif; font-weight:700; font-size:15px; letter-spacing:.02em;
+  }
+  .brand-name{
+    font-family:"Fraunces", serif; font-weight:700; font-size:20px; line-height:1; letter-spacing:-.01em; color:var(--ink);
+    white-space:nowrap;
+  }
+  .topbar-links{display:flex; align-items:center; gap:6px}
+  .topbar-links a{
+    text-decoration:none; font-size:14.5px; font-weight:600; color:var(--ink-2);
+    padding:10px 12px; border-radius:999px; min-height:44px; display:inline-flex; align-items:center;
+  }
+  .topbar-links a:hover{background:#fff}
+  .btn-dark{
+    background:var(--dark); color:#fff !important;
+    padding:11px 18px !important; border-radius:999px;
+    box-shadow:0 1px 0 rgba(0,0,0,.04);
+    white-space:nowrap;
+  }
+  .btn-dark:hover{background:var(--dark-hover) !important}
+  @media (max-width:640px){
+    .topbar-inner{padding:12px 14px; gap:10px}
+    .topbar-links a:not(.btn-dark){display:none}
+    .brand{gap:8px}
+    .brand-badge{width:34px; height:34px; flex-basis:34px; font-size:13px; border-radius:9px}
+    .brand-name{font-size:16.5px}
+    .btn-dark{font-size:12.5px; padding:9px 12px !important; min-height:40px !important}
+  }
+
+  /* ---------- Layout ---------- */
+  .wrap{max-width:1152px; margin:0 auto; padding:0 20px}
+  .hero{
+    max-width:760px; margin:0 auto; text-align:center;
+    padding:52px 0 8px;
+    position:relative;
+  }
+  .pill{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--mint); border:1px solid #CDE6D3;
+    color:var(--ink-2); font-size:13px; font-weight:700; letter-spacing:.01em;
+    padding:8px 14px; border-radius:999px;
+  }
+  .pill i{width:7px; height:7px; border-radius:50%; background:var(--dark); display:block}
+  h1{
+    font-family:"Fraunces", serif;
+    font-size:clamp(42px, 6.2vw, 64px);
+    line-height:.98; letter-spacing:-.02em; font-weight:600;
+    margin:22px 0 0; color:var(--ink);
+  }
+  h1 em{font-style:italic; font-weight:500}
+  .slogan{
+    margin:22px auto 0;
+    background:var(--lav);
+    border:1px solid var(--lav-2);
+    border-radius:16px;
+    padding:16px 20px;
+    max-width:640px;
+  }
+  .slogan p{
+    margin:0; font-family:"Fraunces", serif; font-style:italic; font-weight:500;
+    font-size:clamp(17px, 2.4vw, 20px); line-height:1.35; color:var(--ink);
+  }
+  .hero-lead{
+    margin:20px auto 0; max-width:600px;
+    color:var(--muted); font-size:17px; line-height:1.65; font-weight:500;
+  }
+  .hero-lead strong{color:var(--ink); font-weight:800}
+  .hero-cta{margin:26px auto 0; display:flex; justify-content:center; gap:12px; flex-wrap:wrap}
+  .btn-web{
+    display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    background:var(--dark); color:#fff; text-decoration:none;
+    padding:15px 26px; border-radius:999px;
+    font-weight:800; font-size:16px; letter-spacing:.01em;
+    min-height:54px;
+    box-shadow:0 10px 24px rgba(27,47,47,.14);
+    transition:background .15s, transform .05s;
+  }
+  .btn-web:hover{background:var(--dark-hover)}
+  .btn-web:active{transform:scale(.99)}
+  .btn-web span{font-size:18px; line-height:1}
+  .btn-wa{
+    background:var(--mint); color:var(--ink);
+    border:1.5px solid var(--mint-strong);
+    box-shadow:0 10px 24px rgba(27,47,47,.08);
+  }
+  .btn-wa:hover{background:var(--mint-strong)}
+
+  /* ---------- Form card ---------- */
+  .form-shell{
+    max-width:760px; margin:34px auto 0;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:28px;
+    box-shadow:0 18px 40px rgba(27,47,47,.06), 0 2px 8px rgba(27,47,47,.04);
+    overflow:hidden;
+  }
+  .form-head{
+    padding:26px 28px 0;
+    display:flex; gap:14px; align-items:flex-start;
+  }
+  .form-head-icon{
+    width:44px; height:44px; flex:0 0 44px; border-radius:12px;
+    background:var(--peach); display:grid; place-items:center; font-size:20px;
+  }
+  .form-head h2{
+    font-family:"Fraunces", serif; font-size:24px; line-height:1.1; margin:2px 0 4px; font-weight:600;
+  }
+  .form-head p{margin:0; color:var(--muted); font-size:14.5px; line-height:1.55}
+
+  form{padding:10px 28px 28px}
+  fieldset{border:0; padding:0; margin:0}
+  .step{
+    padding:24px 0 6px;
+    border-top:1px solid var(--line-2);
+    margin-top:22px;
+  }
+  .step:first-of-type{border-top:0; margin-top:8px}
+  .step-top{display:flex; align-items:flex-start; gap:14px; margin-bottom:16px}
+  .step-num{
+    width:40px; height:40px; flex:0 0 40px; border-radius:50%;
+    display:grid; place-items:center;
+    font-family:"Fraunces", serif; font-weight:700; font-size:15px;
+  }
+  .num-1{background:var(--mint)}
+  .num-2{background:var(--peach)}
+  .num-3{background:var(--lav)}
+  .step-top h3{
+    font-family:"Fraunces", serif; font-size:20px; line-height:1.2; font-weight:600; margin:4px 0 4px;
+  }
+  .step-top p{margin:0; color:var(--muted); font-size:14.5px; line-height:1.55}
+  legend{float:left; width:100%; padding:0}
+  legend + *{clear:both}
+
+  /* Opciones tipo de nombre */
+  .choice-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:10px;
+  }
+  @media (max-width:520px){ .choice-grid{grid-template-columns:1fr 1fr} }
+  @media (max-width:380px){ .choice-grid{grid-template-columns:1fr} }
+  .choice{
+    position:relative;
+    display:flex; align-items:center; gap:10px;
+    background:var(--bg-soft); border:1.5px solid var(--line);
+    border-radius:14px; padding:14px 14px;
+    min-height:56px;
+    transition:border-color .15s, background .15s, box-shadow .15s;
+    font-weight:700; font-size:15px; color:var(--ink-2);
+  }
+  .choice:hover{border-color:#D8CFB8; background:#fff}
+  .choice input{
+    appearance:none; -webkit-appearance:none;
+    width:22px; height:22px; flex:0 0 22px; border-radius:50%;
+    border:2px solid #CFC6AE; background:#fff; margin:0; display:grid; place-items:center; cursor:pointer;
+  }
+  .choice input::after{
+    content:""; width:10px; height:10px; border-radius:50%; background:var(--dark); transform:scale(0); transition:transform .15s;
+  }
+  .choice input:checked::after{transform:scale(1)}
+  .choice:has(input:checked){
+    border-color:var(--dark); background:#fff;
+    box-shadow:0 0 0 3px rgba(23,50,50,.08);
+    color:var(--ink);
+  }
+  .choice small{display:block; font-weight:500; color:var(--muted); font-size:12.5px; margin-top:1px; line-height:1.3}
+  .choice-text{line-height:1.25}
+
+  .field{margin-top:14px}
+  .field label{
+    display:block; font-size:13.5px; font-weight:800; letter-spacing:.01em; color:var(--ink); margin-bottom:8px;
+  }
+  .field label span{font-weight:500; color:var(--muted)}
+  .text-input, .textarea{
+    width:100%;
+    background:#fff; border:1.5px solid var(--line); border-radius:14px;
+    padding:14px 16px; color:var(--ink); outline:none;
+    transition:border-color .15s, box-shadow .15s, background .15s;
+  }
+  .text-input::placeholder, .textarea::placeholder{color:#9AA8A5}
+  .text-input:focus, .textarea:focus{
+    border-color:var(--dark); box-shadow:0 0 0 3px rgba(23,50,50,.09);
+  }
+  .text-input:disabled{background:#F3EFE4; color:var(--muted-2); cursor:not-allowed}
+  .textarea{
+    min-height:172px; resize:vertical; line-height:1.65; font-size:16px;
+  }
+  .field-help{
+    display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
+    margin-top:8px; font-size:13px; color:var(--muted);
+  }
+  .char-count{font-variant-numeric:tabular-nums; white-space:nowrap}
+
+  /* Compartir en redes — palomitas */
+  .share-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+  @media (max-width:560px){ .share-grid{grid-template-columns:1fr} }
+  .share-choice{
+    position:relative; display:flex; gap:12px; align-items:flex-start;
+    background:var(--bg-soft); border:1.5px solid var(--line); border-radius:16px;
+    padding:16px; min-height:72px;
+    transition:border-color .15s, background .15s, box-shadow .15s;
+  }
+  .share-choice:hover{border-color:#D8CFB8; background:#fff}
+  .share-choice input{
+    appearance:none; -webkit-appearance:none;
+    width:26px; height:26px; flex:0 0 26px; border-radius:8px;
+    border:2px solid #CFC6AE; background:#fff; margin:1px 0 0; display:grid; place-items:center; cursor:pointer;
+  }
+  .share-choice input::after{
+    content:"✓"; font-size:16px; font-weight:900; line-height:1; color:#fff; transform:scale(0); transition:transform .15s;
+  }
+  .share-choice input:checked{background:var(--dark); border-color:var(--dark)}
+  .share-choice input:checked::after{transform:scale(1)}
+  .share-choice:has(input:checked){
+    border-color:var(--dark); background:#fff; box-shadow:0 0 0 3px rgba(23,50,50,.08);
+  }
+  .share-choice strong{display:block; font-size:15.5px; line-height:1.3; color:var(--ink)}
+  .share-choice span{display:block; font-size:13.5px; color:var(--muted); line-height:1.45; margin-top:3px}
+
+  .error{
+    display:none; margin-top:14px;
+    background:var(--rose); border:1px solid #F3CACA; color:#7A2E2E;
+    padding:12px 14px; border-radius:12px; font-size:14px; font-weight:600; line-height:1.45;
+  }
+  .error.show{display:block}
+
+  .submit-row{margin-top:26px; padding-top:22px; border-top:1px solid var(--line-2)}
+  .btn-submit{
+    width:100%; border:0; cursor:pointer;
+    background:var(--dark); color:#fff;
+    padding:16px 20px; border-radius:14px;
+    font-weight:800; font-size:16px; letter-spacing:.01em;
+    display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    min-height:56px;
+    transition:background .15s, transform .05s;
+  }
+  .btn-submit:hover{background:var(--dark-hover)}
+  .btn-submit:active{transform:scale(.99)}
+  .submit-note{
+    text-align:center; color:var(--muted); font-size:13.5px; line-height:1.55; margin:12px 6px 0;
+  }
+
+  /* Gracias */
+  .thanks{
+    display:none; text-align:center; padding:38px 28px 34px;
+  }
+  .thanks.show{display:block}
+  .thanks-badge{
+    width:56px; height:56px; margin:0 auto 16px; border-radius:50%;
+    background:var(--mint); display:grid; place-items:center; font-size:26px;
+  }
+  .thanks h2{font-family:"Fraunces", serif; font-size:28px; margin:0 0 8px; font-weight:600; line-height:1.15}
+  .thanks p{margin:0 auto; max-width:480px; color:var(--muted); font-size:15.5px; line-height:1.65}
+  .thanks p strong{color:var(--ink)}
+  .btn-again{
+    margin-top:20px; background:#fff; border:1.5px solid var(--line); color:var(--ink);
+    padding:12px 18px; border-radius:999px; font-weight:700; cursor:pointer; min-height:48px;
+  }
+  .btn-again:hover{border-color:var(--dark)}
+
+  /* Franja inferior — 3 ideas, mismo ritmo que la web principal */
+  .ideas{
+    max-width:760px; margin:28px auto 0;
+    display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;
+  }
+  @media (max-width:640px){ .ideas{grid-template-columns:1fr} }
+  .idea{
+    background:#fff; border:1px solid var(--line); border-radius:18px; padding:18px;
+  }
+  .idea-dot{width:36px; height:36px; border-radius:50%; display:grid; place-items:center; font-family:"Fraunces", serif; font-weight:700; font-size:13px; margin-bottom:10px}
+  .idea h3{font-family:"Fraunces", serif; font-size:17px; margin:0 0 4px; font-weight:600}
+  .idea p{margin:0; color:var(--muted); font-size:14px; line-height:1.55}
+
+  footer{
+    max-width:760px; margin:28px auto 0; padding:22px 0 36px; text-align:center;
+    border-top:1px solid var(--line-2);
+  }
+  footer p{margin:0; color:var(--muted); font-size:14px; line-height:1.6}
+  footer strong{color:var(--ink); font-family:"Fraunces", serif}
+  footer a{font-weight:700; text-decoration:underline; text-underline-offset:3px}
+  .footer-slogan{font-family:"Fraunces", serif; font-style:italic; color:var(--ink-2); margin-top:6px !important; font-size:14.5px !important}
+
+  @media (max-width:560px){
+    .hero{padding-top:36px}
+    .form-head, form{padding-left:20px; padding-right:20px}
+    .form-head{padding-top:22px}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{scroll-behavior:auto !important; transition:none !important}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="https://gabriellopezkevin1-tech.github.io/Academia-Juvenil-Ssf/" aria-label="Academia Juvenil Ssf — página principal">
+      <span class="brand-badge" aria-hidden="true">Ssf</span>
+      <span class="brand-name">Academia Juvenil Ssf</span>
+    </a>
+    <nav class="topbar-links" aria-label="Navegación">
+      <a href="https://gabriellopezkevin1-tech.github.io/Academia-Juvenil-Ssf/">Materias</a>
+      <a href="https://gabriellopezkevin1-tech.github.io/Academia-Juvenil-Ssf/">Preguntas</a>
+      <a class="btn-dark" href="#formulario">Cuéntanos de ti</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <span class="pill"><i aria-hidden="true"></i> Comunidad Ssf · Un espacio para ti</span>
+    <h1>Cuéntanos <em>de ti</em></h1>
+    <div class="slogan">
+      <p>“Un trompiezo académico no define tu futuro; la constancia si”</p>
+    </div>
+    <p class="hero-lead">Este no es un registro de clases. Es un espacio para <strong>conocerte y estar más cerca de ti</strong>: cuéntanos una frase, una anécdota o eso que más anhelas. Te leemos con respeto.</p>
+    <div class="hero-cta">
+      <a class="btn-web" href="https://gabriellopezkevin1-tech.github.io/Academia-Juvenil-Ssf/">Ir a nuestra web <span aria-hidden="true">→</span></a>
+      <a class="btn-web btn-wa" href="https://whatsapp.com/channel/0029Vb90Xd98KMqgcRcGQv1K" target="_blank" rel="noopener">Canal de WhatsApp <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+  <section class="form-shell" id="formulario" aria-label="Formulario Cuéntanos de ti">
+    <div class="form-head" id="formHead">
+      <div class="form-head-icon" aria-hidden="true">✎</div>
+      <div>
+        <h2>Tu historia, a tu manera</h2>
+        <p>Sin nombre real, sin teléfono y sin datos personales. Solo cómo quieres que te nombremos y lo que quieras compartir.</p>
+      </div>
+    </div>
+
+    <!--
+      CONEXIÓN A GOOGLE SHEETS (para quien la haga después):
+      - Formulario: id="cuentanosForm" · method="POST"
+      - Solo falta poner la URL del Web App / endpoint en la constante SHEETS_ENDPOINT del script al final.
+      - Campos (name = columna sugerida en Sheets):
+          tipo_de_nombre        → nombre | apodo | distintivo | anonimo
+          nombre_a_mostrar      → texto que escribió (vacío si es anónimo)
+          tu_historia           → texto libre
+          compartir_en_redes    → si_acepto | no_acepto
+          fecha_envio           → fecha y hora (lo llena el script automáticamente)
+      - Cada campo también lleva data-sheet-column con el mismo nombre.
+    -->
+    <form id="cuentanosForm" method="POST" action="" novalidate>
+      <input type="hidden" name="fecha_envio" id="fechaEnvio" data-sheet-column="fecha_envio" value="">
+
+      <!-- 1 -->
+      <fieldset class="step">
+        <legend>
+          <div class="step-top">
+            <span class="step-num num-1" aria-hidden="true">01</span>
+            <div>
+              <h3>¿Cómo te gustaría que te nombráramos?</h3>
+              <p>Elige una opción y escribe cómo quieres aparecer. Si eliges anónimo, no escribas ningún nombre.</p>
+            </div>
+          </div>
+        </legend>
+
+        <div class="choice-grid" role="radiogroup" aria-label="Tipo de nombre">
+          <label class="choice">
+            <input type="radio" name="tipo_de_nombre" data-sheet-column="tipo_de_nombre" value="nombre">
+            <span class="choice-text">Nombre<small>Tu nombre o cómo te dicen</small></span>
+          </label>
+          <label class="choice">
+            <input type="radio" name="tipo_de_nombre" data-sheet-column="tipo_de_nombre" value="apodo">
+            <span class="choice-text">Apodo<small>El apodo que más te gusta</small></span>
+          </label>
+          <label class="choice">
+            <input type="radio" name="tipo_de_nombre" data-sheet-column="tipo_de_nombre" value="distintivo">
+            <span class="choice-text">Distintivo<small>Una palabra que te represente</small></span>
+          </label>
+          <label class="choice">
+            <input type="radio" name="tipo_de_nombre" data-sheet-column="tipo_de_nombre" value="anonimo">
+            <span class="choice-text">Anónimo<small>Sin nombre, solo tu historia</small></span>
+          </label>
+        </div>
+
+        <div class="field">
+          <label for="nombreMostrar">Escribe aquí cómo quieres que te nombremos <span>— no pongas tu nombre completo si no quieres</span></label>
+          <input class="text-input" type="text" id="nombreMostrar" name="nombre_a_mostrar" data-sheet-column="nombre_a_mostrar" placeholder="Ej. Alex, La soñadora, El de las mil historias…" autocomplete="off" maxlength="60">
+        </div>
+      </fieldset>
+
+      <!-- 2 -->
+      <fieldset class="step">
+        <legend>
+          <div class="step-top">
+            <span class="step-num num-2" aria-hidden="true">02</span>
+            <div>
+              <h3>Cuéntanos lo que quieras</h3>
+              <p>Escribe con tus palabras, sin formato y sin prisas.</p>
+            </div>
+          </div>
+        </legend>
+        <div class="field" style="margin-top:0">
+          <label for="tuHistoria">Tu frase, tu anécdota o tu historia</label>
+          <textarea class="textarea" id="tuHistoria" name="tu_historia" data-sheet-column="tu_historia" placeholder="Una frase de tu vida, una anécdota, una historia que te haya pasado, o lo que más anhelas en esta vida…" maxlength="1500"></textarea>
+          <div class="field-help">
+            <span>Puedes escribir una línea o contarlo completo. Tú decides cuánto compartir.</span>
+            <span class="char-count" id="charCount">0 / 1500</span>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- 3 -->
+      <fieldset class="step">
+        <legend>
+          <div class="step-top">
+            <span class="step-num num-3" aria-hidden="true">03</span>
+            <div>
+              <h3>¿Te gustaría que lo compartiéramos en nuestras redes sociales?</h3>
+              <p>Marca una palomita. Si aceptas, lo compartimos solo con el nombre que elegiste arriba.</p>
+            </div>
+          </div>
+        </legend>
+
+        <div class="share-grid">
+          <label class="share-choice">
+            <input type="radio" name="compartir_en_redes" data-sheet-column="compartir_en_redes" value="si_acepto">
+            <span><strong>Sí, acepto que lo compartan</strong><span>Pueden publicarlo en las redes de la academia con mi nombre, apodo o distintivo.</span></span>
+          </label>
+          <label class="share-choice">
+            <input type="radio" name="compartir_en_redes" data-sheet-column="compartir_en_redes" value="no_acepto">
+            <span><strong>No acepto</strong><span>Prefiero que quede solo para la academia, sin publicarlo.</span></span>
+          </label>
+        </div>
+      </fieldset>
+
+      <div class="error" id="formError" role="alert"></div>
+
+      <div class="submit-row">
+        <button class="btn-submit" type="submit">Enviar mi historia <span aria-hidden="true">→</span></button>
+        <p class="submit-note">Al enviar aceptas que la academia lea tu mensaje. Solo se publicará si marcaste “Sí, acepto que lo compartan”.</p>
+      </div>
+    </form>
+
+    <div class="thanks" id="thanksPanel" aria-live="polite">
+      <div class="thanks-badge" aria-hidden="true">✓</div>
+      <h2>¡Gracias por contarnos de ti!</h2>
+      <p id="thanksText">Ya recibimos lo que compartiste. Gracias por confiar en la comunidad de <strong>Academia Juvenil Ssf</strong>.</p>
+      <button class="btn-again" type="button" id="btnAgain">Escribir otro mensaje</button>
+    </div>
+  </section>
+
+  <section class="ideas" aria-label="Qué puedes escribir">
+    <article class="idea">
+      <div class="idea-dot" style="background:var(--mint)">01</div>
+      <h3>Una frase de tu vida</h3>
+      <p> Esa frase que te repites cuando algo se pone difícil o cuando quieres seguir adelante.</p>
+    </article>
+    <article class="idea">
+      <div class="idea-dot" style="background:var(--peach)">02</div>
+      <h3>Una anécdota o historia</h3>
+      <p>Algo que te haya pasado y te haya dejado una enseñanza, una risa o un recuerdo bonito.</p>
+    </article>
+    <article class="idea">
+      <div class="idea-dot" style="background:var(--lav)">03</div>
+      <h3>Lo que más anhelas</h3>
+      <p>Un sueño, una meta o eso que más deseas en esta vida. Aquí también tiene un lugar.</p>
+    </article>
+  </section>
+
+  <footer>
+    <p><strong>Academia Juvenil Ssf</strong> · Síguenos para aprender constantemente</p>
+    <p class="footer-slogan">“Un trompiezo académico no define tu futuro; la constancia si”</p>
+    <p style="margin-top:8px"><a href="https://gabriellopezkevin1-tech.github.io/Academia-Juvenil-Ssf/">← Volver a la página principal</a></p>
+  </footer>
+</main>
+
+<script>
+  // ============================================================
+  // CONEXIÓN A GOOGLE SHEETS — pegar aquí la URL cuando esté lista.
+  // Si se deja vacía (""), el formulario valida y muestra el mensaje
+  // de gracias en esta misma página, sin enviar a ningún servidor.
+  // ============================================================
+  var SHEETS_ENDPOINT = "https://script.google.com/macros/s/AKfycbxzB_um9E-GvjO--z2ZhVXsR9dqle0WBnqQwVAvi1dmjrgpDWrcsmdRCR_Bzp6HO4NjnA/exec";
+
+  var form = document.getElementById('cuentanosForm');
+  var errorBox = document.getElementById('formError');
+  var thanksPanel = document.getElementById('thanksPanel');
+  var thanksText = document.getElementById('thanksText');
+  var formHead = document.getElementById('formHead');
+  var nombreInput = document.getElementById('nombreMostrar');
+  var historiaInput = document.getElementById('tuHistoria');
+  var charCount = document.getElementById('charCount');
+  var fechaInput = document.getElementById('fechaEnvio');
+
+  function getChecked(name){
+    var els = form.querySelectorAll('input[name="' + name + '"]');
+    for (var i = 0; i < els.length; i++){ if (els[i].checked) return els[i].value; }
+    return "";
+  }
+
+  function updateNombreState(){
+    var tipo = getChecked('tipo_de_nombre');
+    if (tipo === 'anonimo'){
+      nombreInput.value = "";
+      nombreInput.disabled = true;
+      nombreInput.placeholder = "Elegiste anónimo — no necesitas escribir un nombre";
+    } else {
+      nombreInput.disabled = false;
+      nombreInput.placeholder = "Ej. Alex, La soñadora, El de las mil historias…";
+    }
+    hideError();
+  }
+
+  var tipoRadios = form.querySelectorAll('input[name="tipo_de_nombre"]');
+  for (var i = 0; i < tipoRadios.length; i++){
+    tipoRadios[i].addEventListener('change', updateNombreState);
+  }
+  var shareRadios = form.querySelectorAll('input[name="compartir_en_redes"]');
+  for (var j = 0; j < shareRadios.length; j++){
+    shareRadios[j].addEventListener('change', hideError);
+  }
+  nombreInput.addEventListener('input', hideError);
+  historiaInput.addEventListener('input', function(){
+    charCount.textContent = historiaInput.value.length + " / 1500";
+    hideError();
+  });
+
+  function showError(msg){
+    errorBox.textContent = msg;
+    errorBox.classList.add('show');
+    errorBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  function hideError(){
+    errorBox.classList.remove('show');
+    errorBox.textContent = "";
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    hideError();
+
+    var tipo = getChecked('tipo_de_nombre');
+    var nombre = nombreInput.value.trim();
+    var historia = historiaInput.value.trim();
+    var compartir = getChecked('compartir_en_redes');
+
+    if (!tipo){
+      showError("Elige cómo te gustaría que te nombráramos: nombre, apodo, distintivo o anónimo.");
+      return;
+    }
+    if (tipo !== 'anonimo' && !nombre){
+      showError("Escribe cómo quieres que te nombremos, o elige la opción Anónimo.");
+      nombreInput.focus();
+      return;
+    }
+    if (!historia){
+      showError("Cuéntanos algo en el cuadro de texto: una frase, una anécdota, una historia o lo que más anhelas.");
+      historiaInput.focus();
+      return;
+    }
+    if (!compartir){
+      showError("Marca una palomita: “Sí, acepto que lo compartan” o “No acepto”.");
+      return;
+    }
+
+    fechaInput.value = new Date().toISOString();
+
+    var displayName = (tipo === 'anonimo' || !nombre) ? "de forma anónima" : "como “" + nombre + "”";
+    var shareLine = compartir === 'si_acepto'
+      ? " Aceptaste que lo compartamos en nuestras redes solo " + displayName + "."
+      : " Quedará solo para la academia, sin publicarlo.";
+
+    var finish = function(){
+      form.style.display = 'none';
+      if (formHead) formHead.style.display = 'none';
+      thanksText.innerHTML = "Ya recibimos lo que compartiste " + displayName + "." + shareLine + " Gracias por confiar en la comunidad de <strong>Academia Juvenil Ssf</strong>.";
+      thanksPanel.classList.add('show');
+      thanksPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    };
+
+    if (SHEETS_ENDPOINT){
+      var data = new FormData(form);
+      fetch(SHEETS_ENDPOINT, { method: 'POST', body: data })
+        .then(function(){ finish(); })
+        .catch(function(){ finish(); });
+    } else {
+      finish();
+    }
+  });
+
+  document.getElementById('btnAgain').addEventListener('click', function(){
+    form.reset();
+    charCount.textContent = "0 / 1500";
+    nombreInput.disabled = false;
+    thanksPanel.classList.remove('show');
+    form.style.display = '';
+    if (formHead) formHead.style.display = '';
+    hideError();
+    document.getElementById('formulario').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+</script>
+</body>
+</html>
